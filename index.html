@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Спряжение арабских глаголов</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="header fade-in">
+      <h1>📖 Спряжение <span class="arabic">فَعَلَ</span></h1>
+      <p>Арабские глаголы с переводом и тренировкой</p>
+    </header>
+
+    <section class="card fade-in">
+      <div class="font-row">
+        <span>Размер шрифта</span>
+        <span id="fontValue">54px</span>
+      </div>
+
+      <label class="sr-only" for="fontRange">Размер арабского шрифта</label>
+      <input
+        id="fontRange"
+        type="range"
+        min="36"
+        max="84"
+        value="54"
+        aria-label="Размер арабского шрифта"
+      />
+    </section>
+
+    <section class="card verb-card fade-in">
+      <div id="mainVerb" class="arabic main-verb"></div>
+      <div id="mainTranslation" class="translation"></div>
+
+      <label class="sr-only" for="tenseSelect">Выбор времени глагола</label>
+      <select id="tenseSelect" class="select" aria-label="Выбор времени глагола">
+        <option value="past">Прошедшее время</option>
+        <option value="present">Настоящее время</option>
+        <option value="future">Будущее время</option>
+      </select>
+    </section>
+
+    <section class="card conjugation-card fade-in">
+      <h2>Спряжения</h2>
+      <div id="conjugationList" class="conjugation-list"></div>
+    </section>
+
+    <section class="controls fade-in">
+      <button class="btn btn-dark" id="prevBtn">← Назад</button>
+      <button class="btn btn-dark" id="nextBtn">Далее →</button>
+    </section>
+
+    <section class="mode-buttons fade-in">
+      <button class="btn btn-yellow" id="learnBtn">📖 Заучивание</button>
+      <button class="btn btn-yellow-outline" id="testBtn">🧠 Тест</button>
+    </section>
+
+    <section class="card stats fade-in">
+      <div>Заучивание <b id="learnPercent">0%</b></div>
+      <div>Тест <b id="testPercent">0%</b></div>
+    </section>
+
+    <section id="learnPanel" class="card panel">
+      <div class="panel-title">📖 Заучивание</div>
+
+      <div class="top-info">
+        <span>✅ <span id="learnScore">0 / 0</span></span>
+      </div>
+
+      <div class="accuracy">
+        <div class="percent" id="learnAccuracy">0%</div>
+        <p>Точность</p>
+        <div class="bar"><span id="learnBar"></span></div>
+      </div>
+
+      <div id="learnQuestion" class="arabic question"></div>
+      <div class="dots">○ ○ ○ ○ ○</div>
+      <div id="learnAnswers" class="answer-grid"></div>
+
+      <button class="btn btn-gray" onclick="closePanels()">Закрыть</button>
+    </section>
+
+    <section id="testPanel" class="card panel">
+      <div class="panel-title">🧠 Тест</div>
+
+      <div class="test-settings">
+        <label for="testTime">Время теста</label>
+        <select id="testTime" class="select small-select" aria-label="Время теста">
+          <option value="60">1 мин</option>
+          <option value="120" selected>2 мин</option>
+          <option value="180">3 мин</option>
+          <option value="300">5 мин</option>
+        </select>
+      </div>
+
+      <div class="top-info">
+        <span>⏱️ <span id="timer">2:00</span></span>
+        <span>✅ <span id="testScore">0 / 0</span></span>
+      </div>
+
+      <div class="accuracy">
+        <div class="percent" id="testAccuracy">0%</div>
+        <p>Точность</p>
+        <div class="bar"><span id="testBar"></span></div>
+      </div>
+
+      <div id="testQuestion" class="arabic question"></div>
+      <div id="testAnswers" class="answer-grid"></div>
+
+      <section class="controls">
+        <button class="btn btn-red" id="finishTest">Завершить</button>
+        <button class="btn btn-gray" id="skipTest">Пропустить</button>
+      </section>
+
+      <button class="btn btn-gray" onclick="closePanels()">Закрыть</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
