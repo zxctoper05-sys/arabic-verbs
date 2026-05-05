@@ -1,19 +1,23 @@
 const pronouns = [
   { key: "ana", ru: "я", ar: "أَنَا" },
   { key: "nahnu", ru: "мы", ar: "نَحْنُ" },
-
   { key: "anta", ru: "ты м.", ar: "أَنْتَ" },
   { key: "anti", ru: "ты ж.", ar: "أَنْتِ" },
   { key: "antuma", ru: "вы двое", ar: "أَنْتُمَا" },
   { key: "antum", ru: "вы м.", ar: "أَنْتُمْ" },
   { key: "antunna", ru: "вы ж.", ar: "أَنْتُنَّ" },
-
   { key: "huwa", ru: "он", ar: "هُوَ" },
   { key: "hiya", ru: "она", ar: "هِيَ" },
   { key: "huma_m", ru: "они двое м.", ar: "هُمَا" },
   { key: "huma_f", ru: "они две ж.", ar: "هُمَا" },
   { key: "hum", ru: "они м.", ar: "هُمْ" },
   { key: "hunna", ru: "они ж.", ar: "هُنَّ" }
+];
+
+const tenses = [
+  { key: "past", ru: "Прошедшее время" },
+  { key: "present", ru: "Настоящее время" },
+  { key: "future", ru: "Будущее время" }
 ];
 
 const verbs = [
@@ -225,7 +229,6 @@ const verbs = [
 
 verbs.forEach(verb => {
   verb.future = {};
-
   pronouns.forEach(pronoun => {
     verb.future[pronoun.key] = "سَ" + verb.present[pronoun.key];
   });
@@ -239,9 +242,6 @@ let learnTotal = 0;
 let testCorrect = 0;
 let testTotal = 0;
 
-let currentLearnTask = null;
-let currentTestTask = null;
-
 let timerInterval = null;
 let timeLeft = 120;
 let testActive = false;
@@ -250,6 +250,38 @@ const mainVerb = document.getElementById("mainVerb");
 const mainTranslation = document.getElementById("mainTranslation");
 const tenseSelect = document.getElementById("tenseSelect");
 const conjugationList = document.getElementById("conjugationList");
+
+const verbSearch = document.getElementById("verbSearch");
+const searchResults = document.getElementById("searchResults");
+
+function normalizeArabic(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/[ًٌٍَُِّْٰـ]/g, "")
+    .replace(/[إأآا]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ؤ/g, "و")
+    .replace(/ئ/g, "ي")
+    .replace(/ة/g, "ه")
+    .trim();
+}
+
+function getVerbSearchText(verb) {
+  return normalizeArabic([
+    verb.ru,
+    verb.base,
+    ...Object.values(verb.past),
+    ...Object.values(verb.present),
+    ...Object.values(verb.future)
+  ].join(" "));
+}
+
+function keepScroll(callback) {
+  const y = window.scrollY;
+  callback();
+  requestAnimationFrame(() => window.scrollTo(0, y));
+}
 
 function renderVerb() {
   const verb = verbs[currentIndex];
@@ -262,6 +294,7 @@ function renderVerb() {
 
 function renderConjugations() {
   const verb = verbs[currentIndex];
+
   conjugationList.innerHTML = "";
 
   pronouns.forEach((pronoun, index) => {
@@ -270,15 +303,51 @@ function renderConjugations() {
     item.style.animationDelay = `${index * 0.03}s`;
 
     item.innerHTML = `
-      <div>
-        <div class="arabic conj-pronoun">${pronoun.ar}</div>
-        <div class="conj-pronoun">${pronoun.ru}</div>
-      </div>
+      <div class="arabic conj-pronoun">${pronoun.ar}</div>
       <div class="arabic conj-form">${verb[tense][pronoun.key]}</div>
     `;
 
     conjugationList.appendChild(item);
   });
+}
+
+function renderSearchResults(query) {
+  searchResults.innerHTML = "";
+
+  const value = normalizeArabic(query);
+
+  if (!value) return;
+
+  const found = verbs.filter(verb => {
+    const searchText = getVerbSearchText(verb);
+    return searchText.includes(value);
+  });
+
+  found.slice(0, 8).forEach(verb => {
+    const index = verbs.indexOf(verb);
+
+    const item = document.createElement("button");
+    item.className = "search-result";
+    item.type = "button";
+
+    item.innerHTML = `
+      <span class="arabic">${verb.base}</span>
+      ${verb.ru}
+    `;
+
+    item.onclick = () => {
+      currentIndex = index;
+      verbSearch.value = "";
+      searchResults.innerHTML = "";
+      renderVerb();
+    };
+
+    searchResults.appendChild(item);
+  });
+
+  if (found.length === 0) {
+    searchResults.innerHTML = `<div class="search-result">Ничего не найдено</div>`;
+  }
 }
 
 function randomItem(arr) {
@@ -291,8 +360,9 @@ function shuffle(arr) {
 
 function getRandomTask() {
   const verb = randomItem(verbs);
+  const taskTense = randomItem(tenses);
   const pronoun = randomItem(pronouns);
-  const form = verb[tense][pronoun.key];
+  const form = verb[taskTense.key][pronoun.key];
 
   const wrong = shuffle(
     pronouns.filter(item => item.key !== pronoun.key)
@@ -302,6 +372,8 @@ function getRandomTask() {
 
   return {
     verb,
+    tense: taskTense.key,
+    tenseRu: taskTense.ru,
     pronoun,
     form,
     options
@@ -309,13 +381,8 @@ function getRandomTask() {
 }
 
 function updateStats() {
-  const learnAcc = learnTotal
-    ? Math.round((learnCorrect / learnTotal) * 100)
-    : 0;
-
-  const testAcc = testTotal
-    ? Math.round((testCorrect / testTotal) * 100)
-    : 0;
+  const learnAcc = learnTotal ? Math.round((learnCorrect / learnTotal) * 100) : 0;
+  const testAcc = testTotal ? Math.round((testCorrect / testTotal) * 100) : 0;
 
   document.getElementById("learnScore").textContent = `${learnCorrect} / ${learnTotal}`;
   document.getElementById("learnAccuracy").textContent = `${learnAcc}%`;
@@ -328,68 +395,33 @@ function updateStats() {
   document.getElementById("testBar").style.width = `${testAcc}%`;
 }
 
-function makeAnswerButton(option, task, mode) {
-  const btn = document.createElement("button");
-  btn.className = "btn answer";
+function removeCorrectBox(mode) {
+  const oldBox = document.getElementById(`${mode}CorrectBox`);
+  if (oldBox) oldBox.remove();
+}
 
-  btn.innerHTML = `
-    <span class="arabic arabic-answer">${option.ar}</span>
-    <small>${option.ru}</small>
-  `;
+function removeTenseBox(mode) {
+  const oldBox = document.getElementById(`${mode}TenseBox`);
+  if (oldBox) oldBox.remove();
+}
 
-  btn.onclick = () => {
-    if (mode === "test" && !testActive) return;
+function showTaskTense(mode, task) {
+  removeTenseBox(mode);
 
-    const box = mode === "learn"
-      ? document.getElementById("learnAnswers")
-      : document.getElementById("testAnswers");
+  const box = document.createElement("div");
+  box.className = "task-tense";
+  box.id = `${mode}TenseBox`;
+  box.textContent = task.tenseRu;
 
-    const buttons = box.querySelectorAll("button");
-    buttons.forEach(button => {
-      button.disabled = true;
-    });
+  const question = document.getElementById(
+    mode === "learn" ? "learnQuestion" : "testQuestion"
+  );
 
-    const isCorrect = option.key === task.pronoun.key;
-
-    if (mode === "learn") {
-      learnTotal++;
-      if (isCorrect) learnCorrect++;
-    } else {
-      testTotal++;
-      if (isCorrect) testCorrect++;
-    }
-
-    buttons.forEach(button => {
-      if (button.dataset.key === task.pronoun.key) {
-        button.classList.add("correct");
-      }
-    });
-
-    if (!isCorrect) {
-      btn.classList.add("wrong");
-    }
-
-    showCorrectAnswer(mode, task);
-    updateStats();
-
-    setTimeout(() => {
-      if (mode === "learn") {
-        renderLearnTask();
-      }
-
-      if (mode === "test" && testActive) {
-        renderTestTask();
-      }
-    }, 1400);
-  };
-
-  btn.dataset.key = option.key;
-  return btn;
+  question.before(box);
 }
 
 function showCorrectAnswer(mode, task) {
-  const oldBox = document.getElementById(`${mode}CorrectBox`);
-  if (oldBox) oldBox.remove();
+  removeCorrectBox(mode);
 
   const box = document.createElement("div");
   box.className = "correct-box";
@@ -397,25 +429,82 @@ function showCorrectAnswer(mode, task) {
 
   box.innerHTML = `
     Правильный ответ:
-    <div class="arabic">${task.pronoun.ar}</div>
-    <b>${task.pronoun.ru}</b>
+    <span class="arabic">${task.pronoun.ar}</span>
   `;
 
-  const answers = document.getElementById(
-    mode === "learn" ? "learnAnswers" : "testAnswers"
+  const question = document.getElementById(
+    mode === "learn" ? "learnQuestion" : "testQuestion"
   );
 
-  answers.before(box);
+  question.after(box);
+}
+
+function makeAnswerButton(option, task, mode) {
+  const btn = document.createElement("button");
+  btn.className = "btn answer";
+  btn.dataset.key = option.key;
+
+  btn.innerHTML = `<span class="arabic arabic-answer">${option.ar}</span>`;
+
+  btn.onclick = () => {
+    btn.blur();
+
+    if (mode === "test" && !testActive) return;
+
+    keepScroll(() => {
+      const box = document.getElementById(
+        mode === "learn" ? "learnAnswers" : "testAnswers"
+      );
+
+      const buttons = box.querySelectorAll("button");
+
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
+
+      const isCorrect = option.key === task.pronoun.key;
+
+      if (mode === "learn") {
+        learnTotal++;
+        if (isCorrect) learnCorrect++;
+      } else {
+        testTotal++;
+        if (isCorrect) testCorrect++;
+      }
+
+      buttons.forEach(button => {
+        if (button.dataset.key === task.pronoun.key) {
+          button.classList.add("correct");
+        }
+      });
+
+      if (!isCorrect) {
+        btn.classList.add("wrong");
+      }
+
+      showCorrectAnswer(mode, task);
+      updateStats();
+    });
+
+    setTimeout(() => {
+      keepScroll(() => {
+        if (mode === "learn") renderLearnTask();
+        if (mode === "test" && testActive) renderTestTask();
+      });
+    }, 1300);
+  };
+
+  return btn;
 }
 
 function renderLearnTask() {
-  const oldBox = document.getElementById("learnCorrectBox");
-  if (oldBox) oldBox.remove();
+  removeCorrectBox("learn");
+  removeTenseBox("learn");
 
   const task = getRandomTask();
-  currentLearnTask = task;
 
   document.getElementById("learnQuestion").textContent = task.form;
+  showTaskTense("learn", task);
 
   const box = document.getElementById("learnAnswers");
   box.innerHTML = "";
@@ -428,13 +517,13 @@ function renderLearnTask() {
 function renderTestTask() {
   if (!testActive) return;
 
-  const oldBox = document.getElementById("testCorrectBox");
-  if (oldBox) oldBox.remove();
+  removeCorrectBox("test");
+  removeTenseBox("test");
 
   const task = getRandomTask();
-  currentTestTask = task;
 
   document.getElementById("testQuestion").textContent = task.form;
+  showTaskTense("test", task);
 
   const box = document.getElementById("testAnswers");
   box.innerHTML = "";
@@ -482,7 +571,7 @@ function startTimer() {
     updateTimerText();
 
     if (timeLeft <= 0) {
-      endTest("⏱️ Время вышло");
+      endTest("Время вышло");
     }
   }, 1000);
 }
@@ -497,19 +586,16 @@ function updateTimerText() {
 function endTest(message = "Тест завершён") {
   testActive = false;
   clearInterval(timerInterval);
-
-  const oldBox = document.getElementById("testCorrectBox");
-  if (oldBox) oldBox.remove();
+  removeCorrectBox("test");
+  removeTenseBox("test");
 
   document.getElementById("testQuestion").textContent = message;
   document.getElementById("testAnswers").innerHTML = "";
 
-  document.getElementById("skipTest").disabled = true;
   document.getElementById("finishTest").disabled = true;
 }
 
 function resetTestButtons() {
-  document.getElementById("skipTest").disabled = false;
   document.getElementById("finishTest").disabled = false;
 }
 
@@ -538,20 +624,11 @@ tenseSelect.onchange = () => {
   renderVerb();
 };
 
-document.getElementById("learnBtn").onclick = () => {
-  openLearn();
-};
-
-document.getElementById("testBtn").onclick = () => {
-  openTest();
-};
+document.getElementById("learnBtn").onclick = openLearn;
+document.getElementById("testBtn").onclick = openTest;
 
 document.getElementById("skipTest").onclick = () => {
-  if (!testActive) return;
-
-  testTotal++;
-  updateStats();
-  renderTestTask();
+  openTest();
 };
 
 document.getElementById("finishTest").onclick = () => {
@@ -571,6 +648,12 @@ document.getElementById("fontRange").oninput = event => {
   document.documentElement.style.setProperty("--arabic-size", `${size}px`);
   document.getElementById("fontValue").textContent = `${size}px`;
 };
+
+if (verbSearch) {
+  verbSearch.addEventListener("input", event => {
+    renderSearchResults(event.target.value);
+  });
+}
 
 renderVerb();
 updateStats();
