@@ -10,8 +10,8 @@
 <body>
   <main class="app">
     <header class="header fade-in">
-      <h1>📖 Спряжение <span class="arabic">فَعَلَ</span></h1>
-      <p>Арабские глаголы с переводом и тренировкой</p>
+      <h1>Спряжение <span class="arabic">فَعَلَ</span></h1>
+      <p>Арабские глаголы с тренировкой</p>
     </header>
 
     <section class="card fade-in">
@@ -21,22 +21,25 @@
       </div>
 
       <label class="sr-only" for="fontRange">Размер арабского шрифта</label>
-      <input
-        id="fontRange"
-        type="range"
-        min="36"
-        max="84"
-        value="54"
-        aria-label="Размер арабского шрифта"
-      />
+      <input id="fontRange" type="range" min="36" max="84" value="54" />
     </section>
 
     <section class="card verb-card fade-in">
+      <label class="sr-only" for="verbSearch">Поиск глагола</label>
+      <input
+        id="verbSearch"
+        class="search-input"
+        type="search"
+        placeholder="Впиши нужный глагол"
+      />
+
+      <div id="searchResults" class="search-results"></div>
+
       <div id="mainVerb" class="arabic main-verb"></div>
       <div id="mainTranslation" class="translation"></div>
 
-      <label class="sr-only" for="tenseSelect">Выбор времени глагола</label>
-      <select id="tenseSelect" class="select" aria-label="Выбор времени глагола">
+      <label class="sr-only" for="tenseSelect">Выбор времени</label>
+      <select id="tenseSelect" class="select">
         <option value="past">Прошедшее время</option>
         <option value="present">Настоящее время</option>
         <option value="future">Будущее время</option>
@@ -49,13 +52,13 @@
     </section>
 
     <section class="controls fade-in">
-      <button class="btn btn-dark" id="prevBtn">← Назад</button>
-      <button class="btn btn-dark" id="nextBtn">Далее →</button>
+      <button class="btn btn-dark" id="prevBtn">Назад</button>
+      <button class="btn btn-dark" id="nextBtn">Далее</button>
     </section>
 
     <section class="mode-buttons fade-in">
-      <button class="btn btn-yellow" id="learnBtn">📖 Заучивание</button>
-      <button class="btn btn-yellow-outline" id="testBtn">🧠 Тест</button>
+      <button class="btn btn-yellow" id="learnBtn">Заучивание</button>
+      <button class="btn btn-yellow-outline" id="testBtn">Тест</button>
     </section>
 
     <section class="card stats fade-in">
@@ -64,10 +67,10 @@
     </section>
 
     <section id="learnPanel" class="card panel">
-      <div class="panel-title">📖 Заучивание</div>
+      <div class="panel-title">Заучивание</div>
 
       <div class="top-info">
-        <span>✅ <span id="learnScore">0 / 0</span></span>
+        <span><span id="learnScore">0 / 0</span></span>
       </div>
 
       <div class="accuracy">
@@ -77,18 +80,17 @@
       </div>
 
       <div id="learnQuestion" class="arabic question"></div>
-      <div class="dots">○ ○ ○ ○ ○</div>
       <div id="learnAnswers" class="answer-grid"></div>
 
       <button class="btn btn-gray" onclick="closePanels()">Закрыть</button>
     </section>
 
     <section id="testPanel" class="card panel">
-      <div class="panel-title">🧠 Тест</div>
+      <div class="panel-title">Тест</div>
 
       <div class="test-settings">
         <label for="testTime">Время теста</label>
-        <select id="testTime" class="select small-select" aria-label="Время теста">
+        <select id="testTime" class="select small-select">
           <option value="60">1 мин</option>
           <option value="120" selected>2 мин</option>
           <option value="180">3 мин</option>
@@ -97,8 +99,8 @@
       </div>
 
       <div class="top-info">
-        <span>⏱️ <span id="timer">2:00</span></span>
-        <span>✅ <span id="testScore">0 / 0</span></span>
+        <span><span id="timer">2:00</span></span>
+        <span><span id="testScore">0 / 0</span></span>
       </div>
 
       <div class="accuracy">
@@ -112,7 +114,7 @@
 
       <section class="controls">
         <button class="btn btn-red" id="finishTest">Завершить</button>
-        <button class="btn btn-gray" id="skipTest">Пропустить</button>
+        <button class="btn btn-gray" id="skipTest">Начать заново</button>
       </section>
 
       <button class="btn btn-gray" onclick="closePanels()">Закрыть</button>
@@ -121,4 +123,4 @@
 
   <script src="app.js"></script>
 </body>
-</html>
+</html> 
