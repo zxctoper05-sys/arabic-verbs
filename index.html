@@ -10,18 +10,25 @@
 <body>
   <main class="app">
     <header class="header fade-in">
-      <h1>Спряжение <span class="arabic">فَعَلَ</span></h1>
+      <h1>Спряжение <span class="arabic">глаголов</span></h1>
       <p>Арабские глаголы с тренировкой</p>
     </header>
 
     <section class="card fade-in">
       <div class="font-row">
-        <span>Размер шрифта</span>
+        <span>Размер арабского шрифта</span>
         <span id="fontValue">54px</span>
       </div>
 
       <label class="sr-only" for="fontRange">Размер арабского шрифта</label>
-      <input id="fontRange" type="range" min="36" max="84" value="54" />
+      <input
+        id="fontRange"
+        type="range"
+        min="36"
+        max="88"
+        value="54"
+        aria-label="Размер арабского шрифта"
+      />
     </section>
 
     <section class="card verb-card fade-in">
@@ -30,7 +37,8 @@
         id="verbSearch"
         class="search-input"
         type="search"
-        placeholder="Впиши нужный глагол"
+        placeholder="Поиск глагола"
+        aria-label="Поиск глагола"
       />
 
       <div id="searchResults" class="search-results"></div>
@@ -38,12 +46,27 @@
       <div id="mainVerb" class="arabic main-verb"></div>
       <div id="mainTranslation" class="translation"></div>
 
+      <button class="btn btn-yellow-outline" id="favoriteBtn">
+        Добавить в избранное
+      </button>
+
       <label class="sr-only" for="tenseSelect">Выбор времени</label>
-      <select id="tenseSelect" class="select">
+      <select id="tenseSelect" class="select" aria-label="Выбор времени">
         <option value="past">Прошедшее время</option>
         <option value="present">Настоящее время</option>
         <option value="future">Будущее время</option>
       </select>
+    </section>
+
+    <section class="card favorites-card fade-in">
+      <div class="section-head">
+        <h2>Избранное</h2>
+        <span id="favoritesCount">0</span>
+      </div>
+
+      <div id="favoritesList" class="favorites-list">
+        Пока пусто
+      </div>
     </section>
 
     <section class="card conjugation-card fade-in">
@@ -61,22 +84,36 @@
       <button class="btn btn-yellow-outline" id="testBtn">Тест</button>
     </section>
 
-    <section class="card stats fade-in">
-      <div>Заучивание <b id="learnPercent">0%</b></div>
-      <div>Тест <b id="testPercent">0%</b></div>
+    <section class="card settings-card fade-in">
+      <h2>Настройки тренировки</h2>
+
+      <label for="practiceSource">Источник слов</label>
+      <select id="practiceSource" class="select">
+        <option value="all">Все глаголы</option>
+        <option value="favorites">Только избранные</option>
+      </select>
+
+      <label for="practiceTense">Время</label>
+      <select id="practiceTense" class="select">
+        <option value="all">Все времена</option>
+        <option value="past">Прошедшее</option>
+        <option value="present">Настоящее</option>
+        <option value="future">Будущее</option>
+      </select>
+
+      <label for="practiceDirection">Тип вопроса</label>
+      <select id="practiceDirection" class="select">
+        <option value="form-to-pronoun">Форма → местоимение</option>
+        <option value="pronoun-to-form">Местоимение → форма</option>
+        <option value="typing">Ввести ответ руками</option>
+      </select>
     </section>
 
     <section id="learnPanel" class="card panel">
       <div class="panel-title">Заучивание</div>
 
       <div class="top-info">
-        <span><span id="learnScore">0 / 0</span></span>
-      </div>
-
-      <div class="accuracy">
-        <div class="percent" id="learnAccuracy">0%</div>
-        <p>Точность</p>
-        <div class="bar"><span id="learnBar"></span></div>
+        <span>Ответы: <span id="learnScore">0 / 0</span></span>
       </div>
 
       <div id="learnQuestion" class="arabic question"></div>
@@ -99,14 +136,8 @@
       </div>
 
       <div class="top-info">
-        <span><span id="timer">2:00</span></span>
-        <span><span id="testScore">0 / 0</span></span>
-      </div>
-
-      <div class="accuracy">
-        <div class="percent" id="testAccuracy">0%</div>
-        <p>Точность</p>
-        <div class="bar"><span id="testBar"></span></div>
+        <span>Время: <span id="timer">2:00</span></span>
+        <span>Ответы: <span id="testScore">0 / 0</span></span>
       </div>
 
       <div id="testQuestion" class="arabic question"></div>
@@ -121,6 +152,7 @@
     </section>
   </main>
 
+  <script src="verbs.js"></script>
   <script src="app.js"></script>
 </body>
-</html> 
+</html>
