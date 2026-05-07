@@ -1,17 +1,17 @@
 const pronouns = [
-  { key: "ana", ru: "я", ar: "أَنَا" },
-  { key: "nahnu", ru: "мы", ar: "نَحْنُ" },
-  { key: "anta", ru: "ты м.", ar: "أَنْتَ" },
-  { key: "anti", ru: "ты ж.", ar: "أَنْتِ" },
-  { key: "antuma", ru: "вы двое", ar: "أَنْتُمَا" },
-  { key: "antum", ru: "вы м.", ar: "أَنْتُمْ" },
-  { key: "antunna", ru: "вы ж.", ar: "أَنْتُنَّ" },
-  { key: "huwa", ru: "он", ar: "هُوَ" },
-  { key: "hiya", ru: "она", ar: "هِيَ" },
-  { key: "huma_m", ru: "они двое м.", ar: "هُمَا" },
-  { key: "huma_f", ru: "они две ж.", ar: "هُمَا" },
-  { key: "hum", ru: "они м.", ar: "هُمْ" },
-  { key: "hunna", ru: "они ж.", ar: "هُنَّ" }
+  { key: "ana", ar: "أَنَا" },
+  { key: "nahnu", ar: "نَحْنُ" },
+  { key: "anta", ar: "أَنْتَ" },
+  { key: "anti", ar: "أَنْتِ" },
+  { key: "antuma", ar: "أَنْتُمَا" },
+  { key: "antum", ar: "أَنْتُمْ" },
+  { key: "antunna", ar: "أَنْتُنَّ" },
+  { key: "huwa", ar: "هُوَ" },
+  { key: "hiya", ar: "هِيَ" },
+  { key: "huma_m", ar: "هُمَا" },
+  { key: "huma_f", ar: "هُمَا" },
+  { key: "hum", ar: "هُمْ" },
+  { key: "hunna", ar: "هُنَّ" }
 ];
 
 const tenses = [
@@ -20,239 +20,13 @@ const tenses = [
   { key: "future", ru: "Будущее время" }
 ];
 
-const verbs = [
-  {
-    ru: "делать",
-    base: "فَعَلَ",
-    past: {
-      ana: "فَعَلْتُ",
-      nahnu: "فَعَلْنَا",
-      anta: "فَعَلْتَ",
-      anti: "فَعَلْتِ",
-      antuma: "فَعَلْتُمَا",
-      antum: "فَعَلْتُمْ",
-      antunna: "فَعَلْتُنَّ",
-      huwa: "فَعَلَ",
-      hiya: "فَعَلَتْ",
-      huma_m: "فَعَلَا",
-      huma_f: "فَعَلَتَا",
-      hum: "فَعَلُوا",
-      hunna: "فَعَلْنَ"
-    },
-    present: {
-      ana: "أَفْعَلُ",
-      nahnu: "نَفْعَلُ",
-      anta: "تَفْعَلُ",
-      anti: "تَفْعَلِينَ",
-      antuma: "تَفْعَلَانِ",
-      antum: "تَفْعَلُونَ",
-      antunna: "تَفْعَلْنَ",
-      huwa: "يَفْعَلُ",
-      hiya: "تَفْعَلُ",
-      huma_m: "يَفْعَلَانِ",
-      huma_f: "تَفْعَلَانِ",
-      hum: "يَفْعَلُونَ",
-      hunna: "يَفْعَلْنَ"
-    }
-  },
-  {
-    ru: "писать",
-    base: "كَتَبَ",
-    past: {
-      ana: "كَتَبْتُ",
-      nahnu: "كَتَبْنَا",
-      anta: "كَتَبْتَ",
-      anti: "كَتَبْتِ",
-      antuma: "كَتَبْتُمَا",
-      antum: "كَتَبْتُمْ",
-      antunna: "كَتَبْتُنَّ",
-      huwa: "كَتَبَ",
-      hiya: "كَتَبَتْ",
-      huma_m: "كَتَبَا",
-      huma_f: "كَتَبَتَا",
-      hum: "كَتَبُوا",
-      hunna: "كَتَبْنَ"
-    },
-    present: {
-      ana: "أَكْتُبُ",
-      nahnu: "نَكْتُبُ",
-      anta: "تَكْتُبُ",
-      anti: "تَكْتُبِينَ",
-      antuma: "تَكْتُبَانِ",
-      antum: "تَكْتُبُونَ",
-      antunna: "تَكْتُبْنَ",
-      huwa: "يَكْتُبُ",
-      hiya: "تَكْتُبُ",
-      huma_m: "يَكْتُبَانِ",
-      huma_f: "تَكْتُبَانِ",
-      hum: "يَكْتُبُونَ",
-      hunna: "يَكْتُبْنَ"
-    }
-  },
-  {
-    ru: "знать",
-    base: "عَلِمَ",
-    past: {
-      ana: "عَلِمْتُ",
-      nahnu: "عَلِمْنَا",
-      anta: "عَلِمْتَ",
-      anti: "عَلِمْتِ",
-      antuma: "عَلِمْتُمَا",
-      antum: "عَلِمْتُمْ",
-      antunna: "عَلِمْتُنَّ",
-      huwa: "عَلِمَ",
-      hiya: "عَلِمَتْ",
-      huma_m: "عَلِمَا",
-      huma_f: "عَلِمَتَا",
-      hum: "عَلِمُوا",
-      hunna: "عَلِمْنَ"
-    },
-    present: {
-      ana: "أَعْلَمُ",
-      nahnu: "نَعْلَمُ",
-      anta: "تَعْلَمُ",
-      anti: "تَعْلَمِينَ",
-      antuma: "تَعْلَمَانِ",
-      antum: "تَعْلَمُونَ",
-      antunna: "تَعْلَمْنَ",
-      huwa: "يَعْلَمُ",
-      hiya: "تَعْلَمُ",
-      huma_m: "يَعْلَمَانِ",
-      huma_f: "تَعْلَمَانِ",
-      hum: "يَعْلَمُونَ",
-      hunna: "يَعْلَمْنَ"
-    }
-  },
-  {
-    ru: "идти",
-    base: "ذَهَبَ",
-    past: {
-      ana: "ذَهَبْتُ",
-      nahnu: "ذَهَبْنَا",
-      anta: "ذَهَبْتَ",
-      anti: "ذَهَبْتِ",
-      antuma: "ذَهَبْتُمَا",
-      antum: "ذَهَبْتُمْ",
-      antunna: "ذَهَبْتُنَّ",
-      huwa: "ذَهَبَ",
-      hiya: "ذَهَبَتْ",
-      huma_m: "ذَهَبَا",
-      huma_f: "ذَهَبَتَا",
-      hum: "ذَهَبُوا",
-      hunna: "ذَهَبْنَ"
-    },
-    present: {
-      ana: "أَذْهَبُ",
-      nahnu: "نَذْهَبُ",
-      anta: "تَذْهَبُ",
-      anti: "تَذْهَبِينَ",
-      antuma: "تَذْهَبَانِ",
-      antum: "تَذْهَبُونَ",
-      antunna: "تَذْهَبْنَ",
-      huwa: "يَذْهَبُ",
-      hiya: "تَذْهَبُ",
-      huma_m: "يَذْهَبَانِ",
-      huma_f: "تَذْهَبَانِ",
-      hum: "يَذْهَبُونَ",
-      hunna: "يَذْهَبْنَ"
-    }
-  },
-  {
-    ru: "открывать",
-    base: "فَتَحَ",
-    past: {
-      ana: "فَتَحْتُ",
-      nahnu: "فَتَحْنَا",
-      anta: "فَتَحْتَ",
-      anti: "فَتَحْتِ",
-      antuma: "فَتَحْتُمَا",
-      antum: "فَتَحْتُمْ",
-      antunna: "فَتَحْتُنَّ",
-      huwa: "فَتَحَ",
-      hiya: "فَتَحَتْ",
-      huma_m: "فَتَحَا",
-      huma_f: "فَتَحَتَا",
-      hum: "فَتَحُوا",
-      hunna: "فَتَحْنَ"
-    },
-    present: {
-      ana: "أَفْتَحُ",
-      nahnu: "نَفْتَحُ",
-      anta: "تَفْتَحُ",
-      anti: "تَفْتَحِينَ",
-      antuma: "تَفْتَحَانِ",
-      antum: "تَفْتَحُونَ",
-      antunna: "تَفْتَحْنَ",
-      huwa: "يَفْتَحُ",
-      hiya: "تَفْتَحُ",
-      huma_m: "يَفْتَحَانِ",
-      huma_f: "تَفْتَحَانِ",
-      hum: "يَفْتَحُونَ",
-      hunna: "يَفْتَحْنَ"
-    }
-  },
-  {
-    ru: "читать",
-    base: "قَرَأَ",
-    past: {
-      ana: "قَرَأْتُ",
-      nahnu: "قَرَأْنَا",
-      anta: "قَرَأْتَ",
-      anti: "قَرَأْتِ",
-      antuma: "قَرَأْتُمَا",
-      antum: "قَرَأْتُمْ",
-      antunna: "قَرَأْتُنَّ",
-      huwa: "قَرَأَ",
-      hiya: "قَرَأَتْ",
-      huma_m: "قَرَآ",
-      huma_f: "قَرَأَتَا",
-      hum: "قَرَأُوا",
-      hunna: "قَرَأْنَ"
-    },
-    present: {
-      ana: "أَقْرَأُ",
-      nahnu: "نَقْرَأُ",
-      anta: "تَقْرَأُ",
-      anti: "تَقْرَئِينَ",
-      antuma: "تَقْرَآنِ",
-      antum: "تَقْرَأُونَ",
-      antunna: "تَقْرَأْنَ",
-      huwa: "يَقْرَأُ",
-      hiya: "تَقْرَأُ",
-      huma_m: "يَقْرَآنِ",
-      huma_f: "تَقْرَآنِ",
-      hum: "يَقْرَأُونَ",
-      hunna: "يَقْرَأْنَ"
-    }
-  }
-];
-
-verbs.forEach(verb => {
-  verb.future = {};
-  pronouns.forEach(pronoun => {
-    verb.future[pronoun.key] = "سَ" + verb.present[pronoun.key];
-  });
-});
-
-let currentIndex = 0;
-let tense = "past";
-
-let learnCorrect = 0;
-let learnTotal = 0;
-let testCorrect = 0;
-let testTotal = 0;
-
-let timerInterval = null;
-let timeLeft = 120;
-let testActive = false;
-
-const mainVerb = document.getElementById("mainVerb");
-const mainTranslation = document.getElementById("mainTranslation");
-const tenseSelect = document.getElementById("tenseSelect");
-const conjugationList = document.getElementById("conjugationList");
-
-const verbSearch = document.getElementById("verbSearch");
-const searchResults = document.getElementById("searchResults");
+const STORAGE_KEYS = {
+  learnCorrect: "arabicLearnCorrect",
+  learnTotal: "arabicLearnTotal",
+  testCorrect: "arabicTestCorrect",
+  testTotal: "arabicTestTotal",
+  favorites: "arabicFavorites"
+};
 
 function normalizeArabic(text) {
   return text
@@ -264,23 +38,116 @@ function normalizeArabic(text) {
     .replace(/ؤ/g, "و")
     .replace(/ئ/g, "ي")
     .replace(/ة/g, "ه")
+    .replace(/[^\u0621-\u064Aа-яёa-z0-9 ]/gi, "")
     .trim();
 }
 
-function getVerbSearchText(verb) {
-  return normalizeArabic([
-    verb.ru,
-    verb.base,
-    ...Object.values(verb.past),
-    ...Object.values(verb.present),
-    ...Object.values(verb.future)
-  ].join(" "));
+function getVowelMark(vowel) {
+  if (vowel === "a") return "َ";
+  if (vowel === "i") return "ِ";
+  return "ُ";
 }
 
-function keepScroll(callback) {
-  const y = window.scrollY;
-  callback();
-  requestAnimationFrame(() => window.scrollTo(0, y));
+function generateRegularVerb(root, ru = "арабский глагол", presentVowel = "u") {
+  root = normalizeArabic(root);
+
+  const [f, a, l] = [...root];
+  const base = `${f}َ${a}َ${l}َ`;
+  const stemPast = `${f}َ${a}َ${l}`;
+  const v = getVowelMark(presentVowel);
+  const stemPresent = `${f}ْ${a}${v}${l}`;
+
+  const past = {
+    ana: `${stemPast}ْتُ`,
+    nahnu: `${stemPast}ْنَا`,
+    anta: `${stemPast}ْتَ`,
+    anti: `${stemPast}ْتِ`,
+    antuma: `${stemPast}ْتُمَا`,
+    antum: `${stemPast}ْتُمْ`,
+    antunna: `${stemPast}ْتُنَّ`,
+    huwa: base,
+    hiya: `${stemPast}َتْ`,
+    huma_m: `${stemPast}َا`,
+    huma_f: `${stemPast}َتَا`,
+    hum: `${stemPast}ُوا`,
+    hunna: `${stemPast}ْنَ`
+  };
+
+  const present = {
+    ana: `أَ${stemPresent}ُ`,
+    nahnu: `نَ${stemPresent}ُ`,
+    anta: `تَ${stemPresent}ُ`,
+    anti: `تَ${stemPresent}ِينَ`,
+    antuma: `تَ${stemPresent}َانِ`,
+    antum: `تَ${stemPresent}ُونَ`,
+    antunna: `تَ${stemPresent}ْنَ`,
+    huwa: `يَ${stemPresent}ُ`,
+    hiya: `تَ${stemPresent}ُ`,
+    huma_m: `يَ${stemPresent}َانِ`,
+    huma_f: `تَ${stemPresent}َانِ`,
+    hum: `يَ${stemPresent}ُونَ`,
+    hunna: `يَ${stemPresent}ْنَ`
+  };
+
+  const future = {};
+
+  pronouns.forEach(p => {
+    future[p.key] = `سَ${present[p.key]}`;
+  });
+
+  return {
+    ru,
+    root,
+    base,
+    past,
+    present,
+    future
+  };
+}
+
+function generateVerb(item) {
+  return generateRegularVerb(item.root, item.ru, item.presentVowel);
+}
+
+const verbs = VERB_DICTIONARY.map(generateVerb);
+
+let currentIndex = 0;
+let tense = "past";
+
+let learnCorrect = Number(localStorage.getItem(STORAGE_KEYS.learnCorrect)) || 0;
+let learnTotal = Number(localStorage.getItem(STORAGE_KEYS.learnTotal)) || 0;
+let testCorrect = Number(localStorage.getItem(STORAGE_KEYS.testCorrect)) || 0;
+let testTotal = Number(localStorage.getItem(STORAGE_KEYS.testTotal)) || 0;
+let favorites = JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites) || "[]");
+
+let timerInterval = null;
+let timeLeft = 120;
+let testActive = false;
+
+const mainVerb = document.getElementById("mainVerb");
+const mainTranslation = document.getElementById("mainTranslation");
+const tenseSelect = document.getElementById("tenseSelect");
+const conjugationList = document.getElementById("conjugationList");
+const verbSearch = document.getElementById("verbSearch");
+const searchResults = document.getElementById("searchResults");
+const favoriteBtn = document.getElementById("favoriteBtn");
+const favoritesList = document.getElementById("favoritesList");
+const favoritesCount = document.getElementById("favoritesCount");
+const practiceSource = document.getElementById("practiceSource");
+const practiceTense = document.getElementById("practiceTense");
+const practiceDirection = document.getElementById("practiceDirection");
+
+function saveProgress() {
+  localStorage.setItem(STORAGE_KEYS.learnCorrect, learnCorrect);
+  localStorage.setItem(STORAGE_KEYS.learnTotal, learnTotal);
+  localStorage.setItem(STORAGE_KEYS.testCorrect, testCorrect);
+  localStorage.setItem(STORAGE_KEYS.testTotal, testTotal);
+  localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(favorites));
+}
+
+function setArabicFontSize(size) {
+  document.documentElement.style.setProperty("--arabic-size", `${size}px`);
+  document.getElementById("fontValue").textContent = `${size}px`;
 }
 
 function renderVerb() {
@@ -290,17 +157,16 @@ function renderVerb() {
   mainTranslation.textContent = verb.ru;
 
   renderConjugations();
+  renderFavoriteButton();
 }
 
 function renderConjugations() {
   const verb = verbs[currentIndex];
-
   conjugationList.innerHTML = "";
 
-  pronouns.forEach((pronoun, index) => {
+  pronouns.forEach(pronoun => {
     const item = document.createElement("div");
     item.className = "conj-item";
-    item.style.animationDelay = `${index * 0.03}s`;
 
     item.innerHTML = `
       <div class="arabic conj-pronoun">${pronoun.ar}</div>
@@ -311,43 +177,202 @@ function renderConjugations() {
   });
 }
 
-function renderSearchResults(query) {
-  searchResults.innerHTML = "";
+function renderFavoriteButton() {
+  const verb = verbs[currentIndex];
 
-  const value = normalizeArabic(query);
+  favoriteBtn.textContent = favorites.includes(verb.root)
+    ? "Убрать из избранного"
+    : "Добавить в избранное";
+}
 
-  if (!value) return;
+function toggleFavorite() {
+  const verb = verbs[currentIndex];
 
-  const found = verbs.filter(verb => {
-    const searchText = getVerbSearchText(verb);
-    return searchText.includes(value);
-  });
+  favorites = [...new Set(favorites)];
 
-  found.slice(0, 8).forEach(verb => {
-    const index = verbs.indexOf(verb);
+  if (favorites.includes(verb.root)) {
+    favorites = favorites.filter(root => root !== verb.root);
+  } else {
+    favorites.push(verb.root);
+  }
 
+  favorites = [...new Set(favorites)];
+
+  saveProgress();
+  renderFavoriteButton();
+  renderFavoritesList();
+}
+
+function renderFavoritesList() {
+  favorites = [...new Set(favorites)];
+
+  const favoriteVerbs = favorites
+    .map(root => verbs.find(verb => verb.root === root))
+    .filter(Boolean);
+
+  favoritesCount.textContent = favoriteVerbs.length;
+
+  if (!favoriteVerbs.length) {
+    favoritesList.textContent = "Пока пусто";
+    saveProgress();
+    return;
+  }
+
+  favoritesList.innerHTML = "";
+
+  favoriteVerbs.forEach(verb => {
     const item = document.createElement("button");
-    item.className = "search-result";
+    item.className = "favorite-chip";
     item.type = "button";
 
     item.innerHTML = `
       <span class="arabic">${verb.base}</span>
-      ${verb.ru}
+      <span>${verb.ru}</span>
     `;
 
     item.onclick = () => {
-      currentIndex = index;
-      verbSearch.value = "";
-      searchResults.innerHTML = "";
+      currentIndex = verbs.indexOf(verb);
       renderVerb();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    searchResults.appendChild(item);
+    favoritesList.appendChild(item);
   });
 
-  if (found.length === 0) {
-    searchResults.innerHTML = `<div class="search-result">Ничего не найдено</div>`;
+  saveProgress();
+}
+
+function getVerbSearchText(verb) {
+  return normalizeArabic([
+    verb.ru,
+    verb.root,
+    verb.base,
+    ...Object.values(verb.past),
+    ...Object.values(verb.present),
+    ...Object.values(verb.future)
+  ].join(" "));
+}
+
+function isArabicThreeLetterRoot(value) {
+  return /^[\u0621-\u064A]{3}$/.test(value);
+}
+
+function findOrGenerateVerb(query) {
+  const clean = normalizeArabic(query);
+
+  const existing = verbs.find(verb => getVerbSearchText(verb).includes(clean));
+  if (existing) return existing;
+
+  if (isArabicThreeLetterRoot(clean)) {
+    const generated = generateRegularVerb(clean);
+    verbs.push(generated);
+    return generated;
   }
+
+  return null;
+}
+
+function addSearchButton(verb) {
+  const index = verbs.indexOf(verb);
+
+  const item = document.createElement("button");
+  item.className = "search-result";
+  item.type = "button";
+
+  item.innerHTML = `
+    <span class="arabic">${verb.base}</span>
+    ${verb.ru}
+  `;
+
+  item.onclick = () => {
+    currentIndex = index;
+    verbSearch.value = "";
+    searchResults.innerHTML = "";
+    renderVerb();
+  };
+
+  searchResults.appendChild(item);
+}
+
+function renderSearchResults(query) {
+  searchResults.innerHTML = "";
+
+  const value = normalizeArabic(query);
+  if (!value) return;
+
+  const found = verbs.filter(verb => getVerbSearchText(verb).includes(value));
+
+  found.slice(0, 8).forEach(addSearchButton);
+
+  if (found.length === 0) {
+    const generated = findOrGenerateVerb(value);
+
+    if (generated) {
+      addSearchButton(generated);
+    } else {
+      searchResults.innerHTML = `<div class="search-result">Ничего не найдено</div>`;
+    }
+  }
+}
+
+document.getElementById("prevBtn").onclick = () => {
+  currentIndex = (currentIndex - 1 + verbs.length) % verbs.length;
+  renderVerb();
+};
+
+document.getElementById("nextBtn").onclick = () => {
+  currentIndex = (currentIndex + 1) % verbs.length;
+  renderVerb();
+};
+
+tenseSelect.onchange = () => {
+  tense = tenseSelect.value;
+  renderVerb();
+};
+
+favoriteBtn.onclick = toggleFavorite;
+
+if (verbSearch) {
+  verbSearch.addEventListener("input", event => {
+    renderSearchResults(event.target.value);
+  });
+}
+
+document.getElementById("fontRange").addEventListener("input", e => {
+  setArabicFontSize(e.target.value);
+});
+
+setArabicFontSize(54);
+renderVerb();
+renderFavoritesList();
+
+function closePanels() {
+  document.getElementById("learnPanel").classList.remove("active");
+  document.getElementById("testPanel").classList.remove("active");
+}
+
+window.closePanels = closePanels;
+
+document.getElementById("learnBtn").onclick = openLearn;
+document.getElementById("testBtn").onclick = openTest;
+document.getElementById("skipTest").onclick = openTest;
+
+document.getElementById("finishTest").onclick = () => {
+  endTest("Тест завершён");
+};
+
+function getPracticeVerbs() {
+  if (practiceSource.value === "favorites") {
+    const favoriteVerbs = verbs.filter(verb => favorites.includes(verb.root));
+    return favoriteVerbs.length ? favoriteVerbs : verbs;
+  }
+
+  return verbs;
+}
+
+function getPracticeTenses() {
+  if (practiceTense.value === "all") return tenses;
+  return tenses.filter(item => item.key === practiceTense.value);
 }
 
 function randomItem(arr) {
@@ -359,16 +384,25 @@ function shuffle(arr) {
 }
 
 function getRandomTask() {
-  const verb = randomItem(verbs);
-  const taskTense = randomItem(tenses);
+  const verb = randomItem(getPracticeVerbs());
+  const taskTense = randomItem(getPracticeTenses());
   const pronoun = randomItem(pronouns);
   const form = verb[taskTense.key][pronoun.key];
+  const direction = practiceDirection.value;
 
-  const wrong = shuffle(
-    pronouns.filter(item => item.key !== pronoun.key)
-  ).slice(0, 3);
+  let options;
 
-  const options = shuffle([pronoun, ...wrong]);
+  if (direction === "pronoun-to-form" || direction === "typing") {
+    const wrongPronouns = shuffle(pronouns.filter(p => p.key !== pronoun.key)).slice(0, 3);
+
+    options = shuffle([pronoun, ...wrongPronouns]).map(p => ({
+      key: p.key,
+      ar: verb[taskTense.key][p.key]
+    }));
+  } else {
+    const wrong = shuffle(pronouns.filter(p => p.key !== pronoun.key)).slice(0, 3);
+    options = shuffle([pronoun, ...wrong]);
+  }
 
   return {
     verb,
@@ -376,23 +410,19 @@ function getRandomTask() {
     tenseRu: taskTense.ru,
     pronoun,
     form,
-    options
+    options,
+    direction
   };
 }
 
 function updateStats() {
-  const learnAcc = learnTotal ? Math.round((learnCorrect / learnTotal) * 100) : 0;
-  const testAcc = testTotal ? Math.round((testCorrect / testTotal) * 100) : 0;
-
   document.getElementById("learnScore").textContent = `${learnCorrect} / ${learnTotal}`;
-  document.getElementById("learnAccuracy").textContent = `${learnAcc}%`;
-  document.getElementById("learnPercent").textContent = `${learnAcc}%`;
-  document.getElementById("learnBar").style.width = `${learnAcc}%`;
-
   document.getElementById("testScore").textContent = `${testCorrect} / ${testTotal}`;
-  document.getElementById("testAccuracy").textContent = `${testAcc}%`;
-  document.getElementById("testPercent").textContent = `${testAcc}%`;
-  document.getElementById("testBar").style.width = `${testAcc}%`;
+  saveProgress();
+}
+
+function compareArabicAnswer(userAnswer, correctAnswer) {
+  return normalizeArabic(userAnswer) === normalizeArabic(correctAnswer);
 }
 
 function removeCorrectBox(mode) {
@@ -427,9 +457,13 @@ function showCorrectAnswer(mode, task) {
   box.className = "correct-box";
   box.id = `${mode}CorrectBox`;
 
+  const correctText = task.direction === "form-to-pronoun"
+    ? task.pronoun.ar
+    : task.form;
+
   box.innerHTML = `
     Правильный ответ:
-    <span class="arabic">${task.pronoun.ar}</span>
+    <span class="arabic">${correctText}</span>
   `;
 
   const question = document.getElementById(
@@ -439,11 +473,18 @@ function showCorrectAnswer(mode, task) {
   question.after(box);
 }
 
+function renderQuestionText(task) {
+  if (task.direction === "pronoun-to-form" || task.direction === "typing") {
+    return task.pronoun.ar;
+  }
+
+  return task.form;
+}
+
 function makeAnswerButton(option, task, mode) {
   const btn = document.createElement("button");
   btn.className = "btn answer";
   btn.dataset.key = option.key;
-
   btn.innerHTML = `<span class="arabic arabic-answer">${option.ar}</span>`;
 
   btn.onclick = () => {
@@ -451,50 +492,99 @@ function makeAnswerButton(option, task, mode) {
 
     if (mode === "test" && !testActive) return;
 
-    keepScroll(() => {
-      const box = document.getElementById(
-        mode === "learn" ? "learnAnswers" : "testAnswers"
-      );
+    const box = document.getElementById(
+      mode === "learn" ? "learnAnswers" : "testAnswers"
+    );
 
-      const buttons = box.querySelectorAll("button");
+    const buttons = box.querySelectorAll("button");
+    buttons.forEach(button => button.disabled = true);
 
-      buttons.forEach(button => {
-        button.disabled = true;
-      });
+    const isCorrect = option.key === task.pronoun.key;
 
-      const isCorrect = option.key === task.pronoun.key;
+    if (mode === "learn") {
+      learnTotal++;
+      if (isCorrect) learnCorrect++;
+    } else {
+      testTotal++;
+      if (isCorrect) testCorrect++;
+    }
 
-      if (mode === "learn") {
-        learnTotal++;
-        if (isCorrect) learnCorrect++;
-      } else {
-        testTotal++;
-        if (isCorrect) testCorrect++;
+    buttons.forEach(button => {
+      if (button.dataset.key === task.pronoun.key) {
+        button.classList.add("correct");
       }
-
-      buttons.forEach(button => {
-        if (button.dataset.key === task.pronoun.key) {
-          button.classList.add("correct");
-        }
-      });
-
-      if (!isCorrect) {
-        btn.classList.add("wrong");
-      }
-
-      showCorrectAnswer(mode, task);
-      updateStats();
     });
 
+    if (!isCorrect) {
+      btn.classList.add("wrong");
+    }
+
+    showCorrectAnswer(mode, task);
+    updateStats();
+
     setTimeout(() => {
-      keepScroll(() => {
-        if (mode === "learn") renderLearnTask();
-        if (mode === "test" && testActive) renderTestTask();
-      });
+      if (mode === "learn") renderLearnTask();
+      if (mode === "test" && testActive) renderTestTask();
     }, 1300);
   };
 
   return btn;
+}
+
+function renderTypingAnswer(box, task, mode) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "typing-box";
+
+  const input = document.createElement("input");
+  input.className = "typing-input";
+  input.type = "text";
+  input.placeholder = "اكتب الإجابة";
+
+  const checkBtn = document.createElement("button");
+  checkBtn.className = "btn btn-yellow";
+  checkBtn.textContent = "Проверить";
+
+  const result = document.createElement("div");
+  result.className = "typing-result";
+
+  wrapper.appendChild(input);
+  wrapper.appendChild(checkBtn);
+  wrapper.appendChild(result);
+  box.appendChild(wrapper);
+
+  checkBtn.onclick = () => {
+    if (mode === "test" && !testActive) return;
+
+    const isCorrect = compareArabicAnswer(input.value, task.form);
+
+    input.disabled = true;
+    checkBtn.disabled = true;
+
+    if (mode === "learn") {
+      learnTotal++;
+      if (isCorrect) learnCorrect++;
+    }
+
+    if (mode === "test") {
+      testTotal++;
+      if (isCorrect) testCorrect++;
+    }
+
+    result.textContent = isCorrect ? "Правильно" : "Неправильно";
+    showCorrectAnswer(mode, task);
+    updateStats();
+
+    setTimeout(() => {
+      if (mode === "learn") renderLearnTask();
+      if (mode === "test" && testActive) renderTestTask();
+    }, 1400);
+  };
+
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") checkBtn.click();
+  });
+
+  setTimeout(() => input.focus(), 100);
 }
 
 function renderLearnTask() {
@@ -503,11 +593,16 @@ function renderLearnTask() {
 
   const task = getRandomTask();
 
-  document.getElementById("learnQuestion").textContent = task.form;
+  document.getElementById("learnQuestion").textContent = renderQuestionText(task);
   showTaskTense("learn", task);
 
   const box = document.getElementById("learnAnswers");
   box.innerHTML = "";
+
+  if (task.direction === "typing") {
+    renderTypingAnswer(box, task, "learn");
+    return;
+  }
 
   task.options.forEach(option => {
     box.appendChild(makeAnswerButton(option, task, "learn"));
@@ -522,11 +617,16 @@ function renderTestTask() {
 
   const task = getRandomTask();
 
-  document.getElementById("testQuestion").textContent = task.form;
+  document.getElementById("testQuestion").textContent = renderQuestionText(task);
   showTaskTense("test", task);
 
   const box = document.getElementById("testAnswers");
   box.innerHTML = "";
+
+  if (task.direction === "typing") {
+    renderTypingAnswer(box, task, "test");
+    return;
+  }
 
   task.options.forEach(option => {
     box.appendChild(makeAnswerButton(option, task, "test"));
@@ -579,7 +679,6 @@ function startTimer() {
 function updateTimerText() {
   const min = Math.floor(timeLeft / 60);
   const sec = String(timeLeft % 60).padStart(2, "0");
-
   document.getElementById("timer").textContent = `${min}:${sec}`;
 }
 
@@ -609,27 +708,11 @@ function closePanels(stopTimer = true) {
   }
 }
 
-document.getElementById("prevBtn").onclick = () => {
-  currentIndex = (currentIndex - 1 + verbs.length) % verbs.length;
-  renderVerb();
-};
-
-document.getElementById("nextBtn").onclick = () => {
-  currentIndex = (currentIndex + 1) % verbs.length;
-  renderVerb();
-};
-
-tenseSelect.onchange = () => {
-  tense = tenseSelect.value;
-  renderVerb();
-};
+window.closePanels = closePanels;
 
 document.getElementById("learnBtn").onclick = openLearn;
 document.getElementById("testBtn").onclick = openTest;
-
-document.getElementById("skipTest").onclick = () => {
-  openTest();
-};
+document.getElementById("skipTest").onclick = openTest;
 
 document.getElementById("finishTest").onclick = () => {
   endTest("Тест завершён");
@@ -642,19 +725,5 @@ document.getElementById("testTime").onchange = event => {
   }
 };
 
-document.getElementById("fontRange").oninput = event => {
-  const size = event.target.value;
-
-  document.documentElement.style.setProperty("--arabic-size", `${size}px`);
-  document.getElementById("fontValue").textContent = `${size}px`;
-};
-
-if (verbSearch) {
-  verbSearch.addEventListener("input", event => {
-    renderSearchResults(event.target.value);
-  });
-}
-
-renderVerb();
 updateStats();
 updateTimerText();
